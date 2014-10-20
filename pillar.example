@@ -1,0 +1,6 @@
+# Example settings for node.
+npm:
+  # A list of directories to run "npm install" in.
+  install_dirs:
+    - /path/to/package.json
+    - /another/path/to/package.json
