@@ -1,3 +1,15 @@
+{%- set os = salt['grains.get']('os') %}
+{% if os == 'Ubuntu' %}
+# Configure PPA (if on Ubuntu) to provide a more up-to-date release of Node and NPM
+nodejs_ppa:
+  pkgrepo.managed:
+    - ppa: chris-lea/node.js
+    - refresh: True
+    - require_in:
+      - pkg: install-nodejs
+      - pkg: install-npm
+{% endif %}
+
 # Install node base package.
 install-nodejs:
   pkg.installed:
@@ -16,19 +28,23 @@ set-registry:
     - name: 'sudo npm config set registry http://registry.npmjs.org'
     - unless: 'sudo npm config get registry | grep registry.npmjs.org'
 
+{% if os != 'Ubuntu' %}
 # Upgrade nodejs to the latest stable release using "n".
 upgrade-nodejs:
   cmd.run:
     - name: 'sudo npm install -g n && sudo n stable'
     - require:
       - cmd: set-registry
+{% endif %}
 
-# And symlink /usr/bin/node to /usr/local/bin/node
-fix-node-binary:
-  cmd.run:
-    - name: 'sudo rm -f /usr/bin/node && sudo ln -s /usr/local/bin/node /usr/bin/node'
+# Install alternative to provide Node at a more logical location
+alternative-nodejs:
+  alternatives.install:
+    - name: /usr/bin/node
+    - link: /usr/local/bin/node
+    - priority: 1
     - require:
-      - cmd: set-registry
+      - pkg: install-nodejs
 
 {% if 'install_dirs' in salt['pillar.get']('node:npm', {}) %}
 {% for install_dir in salt['pillar.get']('node:npm:install_dirs', {}) %}
