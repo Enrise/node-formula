@@ -1,6 +1,8 @@
 # Example settings for node.
-npm:
-  # A list of directories to run "npm install" in.
-  install_dirs:
-    - /path/to/package.json
-    - /another/path/to/package.json
+node:
+  version: '0.10.35' # version if you do not want 'latest'
+  npm:
+    # A list of directories to run "npm install" in.
+    install_dirs:
+      - /path/to/package.json
+      - /another/path/to/package.json
