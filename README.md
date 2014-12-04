@@ -1,11 +1,11 @@
 # node-formula
 
-This formula will install the latest stable version of nodejs and npm, and optionally runs `npm install` in 
+This formula will install the latest stable version of nodejs and npm, and optionally runs `npm install` in
 the specified directories.
 
 ## Compatibility
 
-This formula should be work on all linux systems.
+This formula currently only works on Debian-based systems (Debian, Ubuntu etc).
 
 ## Contributing
 
