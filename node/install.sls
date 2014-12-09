@@ -3,9 +3,6 @@
 nodejs:
   pkg.installed
 
-npm:
-  pkg.installed
-
 {%- if node_version != 'latest' %}
 # We'll need the "n" package for this
 install_node_n:
@@ -13,7 +10,7 @@ install_node_n:
     - name: npm install -g n
     - unless: test -f /usr/lib/node_modules/n/bin/n
     - require:
-      - pkg: npm
+      - pkg: nodejs
 
 # Downgrade to given version
 change_nodejs_version:
