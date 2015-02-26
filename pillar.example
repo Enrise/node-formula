@@ -6,3 +6,7 @@ node:
     install_dirs:
       - /path/to/package.json
       - /another/path/to/package.json
+    # A list of packages to globally install
+    install_pkgs:
+      - 'bower'
+      - 'pm2@0.9.2'
