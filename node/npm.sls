@@ -1,4 +1,4 @@
-# NPM acties
+# NPM actions
 {% for install_dir in salt['pillar.get']('node:npm:install_dirs', {}) %}
 npm_install_{{ install_dir }}:
   cmd.run:
@@ -6,3 +6,10 @@ npm_install_{{ install_dir }}:
     - cwd: {{ install_dir }}
     - unless: test -d {{ install_dir }}/node_modules
 {% endfor %}
+
+{%- for package in salt['pillar.get']('node:npm:install_pkgs', {}) %}
+{{ package }}:
+  npm.installed:
+    - require:
+      - pkg: nodejs
+{%- endfor %}
