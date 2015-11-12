@@ -5,6 +5,9 @@ npm_install_{{ install_dir }}:
     - name: 'npm install'
     - cwd: {{ install_dir }}
     - unless: test -d {{ install_dir }}/node_modules
+    {%- if install_user is defined %}
+    - user: {{ install_user }}
+    {%- endif %}
 {% endfor %}
 
 {%- for package in salt['pillar.get']('node:npm:install_pkgs', {}) %}
