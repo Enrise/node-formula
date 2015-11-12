@@ -2,6 +2,8 @@
 node:
   version: '0.10.35' # version if you do not want 'latest'
   npm:
+    # Don't run npm install if the node_modules folder exists
+    test_node_modules: true
     # Install the non-global packages as this user
     install_user: vagrant
     # A list of directories to run "npm install" in.
