@@ -8,7 +8,7 @@ nodejs:
 install_node_n:
   cmd.run:
     - name: npm install -g n
-    - unless: test -f /usr/lib/node_modules/n/bin/n
+    - unless: hash n 2>/dev/null
     - require:
       - pkg: nodejs
 
