@@ -1,5 +1,7 @@
 # node-formula
 
+[![Travis branch](https://img.shields.io/travis/Enrise/node-formula/master.svg?style=flat-square)](https://travis-ci.org/Enrise/node-formula)
+
 This formula will install the latest stable version of nodejs and npm, and optionally runs `npm install` in
 the specified directories.
 
