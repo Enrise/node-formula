@@ -6,9 +6,10 @@
 nodejs_repo:
   pkgrepo.managed:
     - humanname: Node.js Repo
-    - key_url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
     - name: deb https://deb.nodesource.com/node {{ lsb_codename }} main
     - dist: {{ lsb_codename }}
+    - keyid: '68576280'
+    - keyserver: keyserver.ubuntu.com
     - file: /etc/apt/sources.list.d/nodesource.list
     - refresh: True
     - require_in:
