@@ -1,6 +1,8 @@
 # Example settings for node.
 node:
-  version: '0.10.35' # version if you do not want 'latest'
+  repo: 'node_7.x'
+  version: '7.7.4' # version if you do not want 'latest'
+
   #npm:
   #  # Install the non-global packages as this user
   #  install_user: vagrant
